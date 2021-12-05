@@ -4,7 +4,7 @@
 
 La prueba me resultó interesante de desarrollar, sobretodo cuando implementé el patrón de diseño Factory para la creación de usuarios.
 
-A continuación, permítanme comentarles algunas decisiones que tomé:
+A continuación, permítanme comentarles algunas decisiones que tomé en esta prueba:
 
 - Dado a que la base de datos es MongoDB (No relacional), aproveché la flexibilidad que brinda este tipo de bases de datos para que, con el mismo schema poder crear ambos tipos de usuarios (internos y externos). Puesto que eso es parte de la naturaleza de las BDD NoSQL.
 
