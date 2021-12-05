@@ -3,6 +3,7 @@ node_modules/
 dist/
 .vscode/
 .test/
+.angular/
 .eslintrc.js
 .editorconfig
 .gitignore

@@ -1,14 +1,12 @@
-import { config } from 'dotenv';
-config();
-import { ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  app.enableCors();
-  app.setGlobalPrefix('api');
-  app.useGlobalPipes(new ValidationPipe()); // validations pipe
-  await app.listen(3000);
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+if (environment.production) {
+  enableProdMode();
 }
-bootstrap();
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

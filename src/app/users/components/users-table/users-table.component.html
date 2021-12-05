@@ -1,0 +1,90 @@
+<p-table
+  #dt
+  [columns]="cols"
+  [value]="users"
+  selectionMode="multiple"
+  [(selection)]="selectedUsers"
+  responsiveLayout="scroll"
+  dataKey="_id"
+  [rowHover]="true"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [loading]="loading"
+  [paginator]="true"
+  [filterDelay]="0"
+  [globalFilterFields]="['_id', 'email', 'name']"
+>
+  <!-- Caption -->
+  <ng-template pTemplate="caption">
+    <div class="flex justify-content-between align-items-center">
+      <div>
+        <div class="text-2xl my-3">List of Users</div>
+        <div class="mt-3">
+          <p-selectButton
+            [options]="userTypes"
+            [(ngModel)]="selectedTypes"
+            optionLabel="name"
+            optionValue="code"
+            [multiple]="true"
+            (onChange)="handleSelectOnChange()"
+          ></p-selectButton>
+        </div>
+      </div>
+
+      <div class="flex flex-column">
+        <span class="p-input-icon-left block my-3">
+          <i class="pi pi-search"></i>
+          <input
+            #searchText
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal(searchText.value, 'contains')"
+            placeholder="Global Search"
+          />
+        </span>
+        <div class="ml-auto">
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-file"
+            (click)="dt.exportCSV()"
+            class="mr-2"
+            pTooltip="CSV"
+            tooltipPosition="bottom"
+          ></button>
+          <button
+            type="button"
+            pButton
+            pRipple
+            icon="pi pi-filter"
+            (click)="dt.exportCSV({ selectionOnly: true })"
+            class="p-button-info"
+            pTooltip="Selection Only"
+            tooltipPosition="bottom"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Header -->
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+        {{ col.header }}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template pTemplate="body" let-user let-columns="columns">
+    <tr [pSelectableRow]="user">
+      <td *ngFor="let col of columns">
+        {{ user[col.field] ?? '-' }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
