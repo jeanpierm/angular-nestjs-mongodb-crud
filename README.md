@@ -75,11 +75,11 @@ $ docker-compose up --build
 docker-compose down
 ```
 
-## Backend
-
-### Diagrama de la arquitectura de microservicios
+## Diagrama de la arquitectura de microservicios
 
 ![Diagrama de la arquitectura de microservicios](https://raw.githubusercontent.com/jeanpierm/prueba-gizlo/master/captures/microservices-diagram.png)
+
+## Backend
 
 ### Diagrama de clases del patrón de diseño Factory Method
 
