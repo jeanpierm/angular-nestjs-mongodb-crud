@@ -1,0 +1,59 @@
+@protocol = http
+@hostname = localhost
+@port = 3000
+@host = {{protocol}}://{{hostname}}:{{port}}/api
+@contentType = application/json
+@id = 61ac190e6341798436f8f97d
+@type = external
+### GET HELLO
+GET {{host}}
+
+### GET USERS
+GET {{host}}/users
+
+### GET USERS BY TYPE
+GET {{host}}/users?type={{type}}
+
+### GET USER BY ID
+GET {{host}}/users/{{id}}
+
+### POST USER (internal)
+POST {{host}}/users
+content-type: {{contentType}}
+
+{
+  "type": "",
+  "email": "facundo",
+  "password": "1234",
+  "name": "Facundo Cabral",
+  "direction": "of the world",
+  "gender": "a"
+}
+
+### POST USER (external)
+
+POST {{host}}/users
+content-type: {{contentType}}
+
+{
+  "type": "external",
+  "email": "mendoza@gmail.com",
+  "password": "1234",
+  "bilingual": false,
+  "nationality": "Ecuatoriano",
+  "phone": "973261823"
+}
+
+### PATCH USER
+PATCH {{host}}/users/{{id}}
+content-type: {{contentType}}
+
+{
+  "name": "jesus"
+}
+
+### DELETE USER
+DELETE {{host}}/users/{{id}}
+
+### DELETE ALL USERS
+DELETE {{host}}/users
